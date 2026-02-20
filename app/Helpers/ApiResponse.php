@@ -7,13 +7,24 @@ if (!function_exists('api_response')) {
         bool $success = true,
         int $httpStatus = 200
     ): \Illuminate\Http\JsonResponse {
+        if ($success) {
+            return response()->json([
+                'status' => [
+                    'status'  => 'success',
+                    'code'    => $httpStatus,
+                    'message' => $message,
+                ],
+                'data'    => $data,
+            ], $httpStatus);
+        }
         return response()->json([
             'status' => [
-                'status'  => $success ? 'success' : 'error',
+                'status'  => 'error',
                 'code'    => $httpStatus,
                 'message' => $message,
+                'errors'  => $data,
             ],
-            'data'    => $data,
+            'data'    => null,
         ], $httpStatus);
     }
 }
