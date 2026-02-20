@@ -27,6 +27,7 @@
                     @endif
                 </div>
                 <div class="d-flex gap-2">
+                    <a href="{{ route('notes.show', $note) }}" class="btn btn-sm btn-outline-primary">View</a>
                     <a href="{{ route('notes.edit', $note) }}" class="btn btn-sm btn-outline-secondary">Edit</a>
                     <form action="{{ route('notes.destroy', $note) }}" method="POST" class="d-inline" onsubmit="return confirm('Delete this note?');">
                         @csrf
